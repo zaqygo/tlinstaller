@@ -1,0 +1,1269 @@
+#!/bin/bash 
+
+#about
+##############################################################################
+#                           TLauncher Install                                #
+#                           Install for linux                                #
+#                              Version 3.1                                   #
+##############################################################################
+
+	#debuginfo
+info="$( set -o posix; set | sed -e '/^_=*/d' )"
+	#photo
+tlauncher_install="╭━━╮╱╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╱╭━━╮╱╱╭━┳╮
+╰╮╭┫╭━╮╭┳┳━┳┳━┫╰┳━┳┳╮╰┃┃╋━┳┫━┫╰┳━╮╭╮╭╮
+╱┃┃╰┫╋╰┫┃┃┃┃┃━┫┃┃┻┫╭╯╭┃┃┫┃┃┣━┃╭┫╋╰┫╰┫╰╮
+╱╰┻━┻━━┻━┻┻━┻━┻┻┻━┻╯╱╰━━┻┻━┻━┻━┻━━┻━┻━╯╯
+"
+tlauncher_open="╭━╮
+┃┃┣━┳━┳━┳╮
+┃┃┃╋┃┻┫┃┃┃
+╰━┫╭┻━┻┻━╯
+╱╱╰╯
+"
+tlauncher_reinstall="╭╭━━╮╱╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╱╭━╮╱╭╮╱╱╭━┳╮
+╰╮╭┫╭━╮╭┳┳━┳┳━┫╰┳━┳┳╮┃╋┣━╋╋━┳┫━┫╰┳━╮╭╮╭╮
+╱┃┃╰┫╋╰┫┃┃┃┃┃━┫┃┃┻┫╭╯┃╮┫┻┫┃┃┃┣━┃╭┫╋╰┫╰┫╰╮
+╱╰┻━┻━━┻━┻┻━┻━┻┻┻━┻╯╱╰┻┻━┻┻┻━┻━┻━┻━━┻━┻━╯
+"
+tlauncher_uinstall="╭━━╮╱╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╱╭┳┳╮╱╱╭━┳╮
+╰╮╭┫╭━╮╭┳┳━┳┳━┫╰┳━┳┳╮┃┃┣╋━┳┫━┫╰┳━╮╭╮╭╮
+╱┃┃╰┫╋╰┫┃┃┃┃┃━┫┃┃┻┫╭╯┃┃┃┃┃┃┣━┃╭┫╋╰┫╰┫╰╮
+╱╰┻━┻━━┻━┻┻━┻━┻┻┻━┻╯╱╰━┻┻┻━┻━┻━┻━━┻━┻━╯
+"
+exitlol="╱╱╱╱╭┳┳━━╮
+╭━┳┳╋┫╰┳╮┃
+┃┻╋┃┫┃╭╋╭╯
+╰━┻┻┻┻━╋┫
+╱╱╱╱╱╱╱╰╯"
+confirm_install="╱╱╱╱╱╱╱╭━┳╮
+╭━┳━┳━┳┫━╋╋┳┳━━╮
+┃━┫╋┃┃┃┃╭┫┃╭┫┃┃┃
+╰━┻━┻┻━┻╯╰┻╯╰┻┻╯
+"
+repoupdate="╭┳╮╱╱╭╮╱╱╭╮
+┃┃┣━┳╯┣━╮┃╰┳━╮
+┃┃┃╋┃╋┃╋╰┫╭┫┻┫
+╰━┫╭┻━┻━━┻━┻━╯
+╱╱╰
+"
+java="╱╭╮╱╱╱╱╱╱╱╱╱╭━━╮╱╱╭━┳╮
+╱┃┣━┳━┳━┳━╮╱╰┃┃╋━┳┫━┫╰┳━╮╭╮╭╮
+╭┫┃╋╰╮┃╭┫╋╰╮╭┃┃┫┃┃┣━┃╭┫╋╰┫╰┫╰╮
+╰━┻━━┻━╯╰━━╯╰━━┻┻━┻━┻━┻━━┻━┻━╯
+"
+git="╭━━┳┳╮╱╭━━╮╱╱╭━┳╮
+┃╭━╋┫╰╮╰┃┃╋━┳┫━┫╰┳━╮╭╮╭╮
+┃╰╮┃┃╭┫╭┃┃┫┃┃┣━┃╭┫╋╰┫╰┫╰╮
+╰━━┻┻━╯╰━━┻┻━┻━┻━┻━━┻━┻━╯
+"
+unzip="╭┳╮╱╱╭━┳╮╱╱╭━━╮╱╱╭━┳╮
+┃┃┣━┳╋━┣╋━╮╰┃┃╋━┳┫━┫╰┳━╮╭╮╭╮
+┃┃┃┃┃┃━┫┃╋┃╭┃┃┫┃┃┣━┃╭┫╋╰┫╰┫╰╮
+╰━┻┻━┻━┻┫╭╯╰━━┻┻━┻━┻━┻━━┻━┻━╯
+╱╱╱╱╱╱╱╱╰╯
+"
+global_f="╭━━╮╱╱╱╭╮╱╱╱╱╱╱╭━━╮╱╱╱╭╮
+┃╭━╋╮╭━┫╰┳━╮╭╮╱┃━┳┻┳╮╭╯┣━┳┳╮
+┃╰╮┃╰┫╋┃╋┃╋╰┫╰╮┃╭┫╋┃╰┫╋┃┻┫╭╯
+╰━━┻━┻━┻━┻━━┻━╯╰╯╰━┻━┻━┻━┻╯
+"
+icon_d="╭━━╮╱╭━┳╮╭╮╱╱╱╱╱╭━━╮
+╰╮╮┣━┫━┫┣┫╰┳━┳━╮╰┃┃╋━┳━┳━┳╮
+╭┻╯┃┻╋━┃━┫╭┫╋┃╋┃╭┃┃┫━┫╋┃┃┃┃
+╰━━┻━┻━┻┻┻━┻━┫╭╯╰━━┻━┻━┻┻━╯
+╱╱╱╱╱╱╱╱╱╱╱╱╱╰╯
+"
+icon_m="╭━┳━╮╱╱╱╱╱╱╱╭━━╮
+┃┃┃┃┣━┳━┳┳┳╮╰┃┃╋━┳━┳━┳╮
+┃┃┃┃┃┻┫┃┃┃┃┃╭┃┃┫━┫╋┃┃┃┃
+╰┻━┻┻━┻┻━┻━╯╰━━┻━┻━┻┻━╯
+"
+tlauncher_icon_sc=" 
+                      ,╓▄▄,_
+                ,▄▄███████████▄▄,_
+         _,▄▄████████████▓▓█▓▓▓▓▓▓▓▓▄╖,_
+   _,▄▄███████████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓@╖__
+ƒ███████████████▓▓▓▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒╫▓█Γ
+╫██████▓██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓██████▌
+[███████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▓▒████████████▌
+╫████████████████▓▓▓▒▓▓▓▓▀▓▓▓▓▓█████████████████▌
+╫██████████████████████▓▓▒██████████████████████▌
+╫██████▓████████████████████████████████████████▌   ╭━━╮╱╱╭━┳╮╱╱╱╱╱╱╭━╮╱╱╱╱╱╱╱╱╱╱╭╮
+╫████████▓███▓█████████████████████▓████████████▌   ╰┃┃╋━┳┫━┫╰┳━╮╭╮╱┃╭╋━┳━━┳━┳╮╭━┫╰┳━╮
+╫███████████████▓███████████████████████████████▌   ╭┃┃┫┃┃┣━┃╭┫╋╰┫╰╮┃╰┫╋┃┃┃┃╋┃╰┫┻┫╭┫┻┫
+╫█████████████████████▓█████████████▓███████████µ   ╰━━┻┻━┻━┻━┻━━┻━╯╰━┻━┻┻┻┫╭┻━┻━┻━┻━╯
+▐███████████████████████████████████████████████µ   ╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰╯
+▐███▓███████████████████████████████████████▓███µ 
+▐███████████████████████████████████████████████∩
+▐█▓▓▓███████▓███████████████████████▓█▓████▓▓▓▓█∩
+╞███▓██▓██▓██▓▓███████████████████▓▓██▓██▓██████
+▐▓▓▓▓████▓█████████▓█████████▓█████████▓███▓▓▓▓▓
+╘█▓▓█▓▓▓▓▓██▓▓▓██▓████████████████▓▓▓▓█▓▓▓▓▓█▓▓█
+   ▀▀▓█▓▓████████▓▓███▓▓▓▓██▓▓██▓█████▓▓█▓▀▀
+        ▀▓▓▓▓▓▓▓▓▓███████████▓▓▓█▓▓▓█▀▀
+             ▀█▓▓█▓███▓▓▓▓█▓▓█▓▓▀▀
+                  ▀▀█▓▓▓█▓▓▓▓▀
+                       ▀▀
+"
+tlauncher_icon_rc=" 
+                      ,╓▄▄,_
+                ,▄▄███████████▄▄,_
+         _,▄▄████████████▓▓█▓▓▓▓▓▓▓▓▄╖,_
+   _,▄▄███████████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓@╖__
+ƒ███████████████▓▓▓▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒╫▓█Γ
+╫██████▓██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓██████▌
+[███████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▓▒████████████▌
+╫████████████████▓▓▓▒▓▓▓▓▀▓▓▓▓▓█████████████████▌
+╫██████████████████████▓▓▒██████████████████████▌
+╫██████▓████████████████████████████████████████▌   ╭━╮╱╭╮╱╱╭━┳╮╱╱╱╱╱╱╱╱╭━╮╱╱╱╱╱╱╱╱╱╱╭╮
+╫████████▓███▓█████████████████████▓████████████▌   ┃╋┣━╋╋━┳┫━┫╰┳━╮╭╮╭╮╱┃╭╋━┳━━┳━┳╮╭━┫╰┳━╮
+╫███████████████▓███████████████████████████████▌   ┃╮┫┻┫┃┃┃┣━┃╭┫╋╰┫╰┫╰╮┃╰┫╋┃┃┃┃╋┃╰┫┻┫╭┫┻┫
+╫█████████████████████▓█████████████▓███████████µ   ╰┻┻━┻┻┻━┻━┻━┻━━┻━┻━╯╰━┻━┻┻┻┫╭┻━┻━┻━┻━╯
+▐███████████████████████████████████████████████µ   ╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰╯
+▐███▓███████████████████████████████████████▓███µ 
+▐███████████████████████████████████████████████∩
+▐█▓▓▓███████▓███████████████████████▓█▓████▓▓▓▓█∩
+╞███▓██▓██▓██▓▓███████████████████▓▓██▓██▓██████
+▐▓▓▓▓████▓█████████▓█████████▓█████████▓███▓▓▓▓▓
+╘█▓▓█▓▓▓▓▓██▓▓▓██▓████████████████▓▓▓▓█▓▓▓▓▓█▓▓█
+   ▀▀▓█▓▓████████▓▓███▓▓▓▓██▓▓██▓█████▓▓█▓▀▀
+        ▀▓▓▓▓▓▓▓▓▓███████████▓▓▓█▓▓▓█▀▀
+             ▀█▓▓█▓███▓▓▓▓█▓▓█▓▓▀▀
+                  ▀▀█▓▓▓█▓▓▓▓▀
+                       ▀▀
+"
+tlauncher_icon_uc=" 
+                      ,╓▄▄,_
+                ,▄▄███████████▄▄,_
+         _,▄▄████████████▓▓█▓▓▓▓▓▓▓▓▄╖,_
+   _,▄▄███████████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓@╖__
+ƒ███████████████▓▓▓▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒╫▓█Γ
+╫██████▓██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓██████▌
+[███████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▓▒████████████▌
+╫████████████████▓▓▓▒▓▓▓▓▀▓▓▓▓▓█████████████████▌
+╫██████████████████████▓▓▒██████████████████████▌
+╫██████▓████████████████████████████████████████▌   ╭┳┳╮╱╱╭━┳╮╱╱╱╱╱╱╭━╮╱╱╱╱╱╱╱╱╱╱╭╮
+▐███▓███████████████████████████████████████▓███µ   ┃┃┣╋━┳┫━┫╰┳━╮╭╮╱┃╭╋━┳━━┳━┳╮╭━┫╰┳━╮
+▐███████████████████████████████████████████████∩   ┃┃┃┃┃┃┣━┃╭┫╋╰┫╰╮┃╰┫╋┃┃┃┃╋┃╰┫┻┫╭┫┻┫
+▐███▓███████████████████████████████████████▓███µ   ╰━┻┻┻━┻━┻━┻━━┻━╯╰━┻━┻┻┻┫╭┻━┻━┻━┻━╯
+▐███▓███████████████████████████████████████▓███µ   ╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰╯
+▐███████████████████████████████████████████████∩
+▐█▓▓▓███████▓███████████████████████▓█▓████▓▓▓▓█∩
+╞███▓██▓██▓██▓▓███████████████████▓▓██▓██▓██████
+▐▓▓▓▓████▓█████████▓█████████▓█████████▓███▓▓▓▓▓
+╘█▓▓█▓▓▓▓▓██▓▓▓██▓████████████████▓▓▓▓█▓▓▓▓▓█▓▓█
+   ▀▀▓█▓▓████████▓▓███▓▓▓▓██▓▓██▓█████▓▓█▓▀▀
+        ▀▓▓▓▓▓▓▓▓▓███████████▓▓▓█▓▓▓█▀▀
+             ▀█▓▓█▓███▓▓▓▓█▓▓█▓▓▀▀
+                  ▀▀█▓▓▓█▓▓▓▓▀
+                       ▀▀
+"
+	#endphoto
+	#variable
+num_of_sel_lang=""
+desktop_shortcut=""
+main_shortcut=""
+clr=""
+deb=""
+installstatus=""
+aus=""
+
+	#endvarible
+	#text
+sellang_entrue="[TL] Select an item to continue
+#Installed
+--------------
+#OpenTL           - [3]
+#Reinstall        - [4]
+#Uinstall         - [5]
+#Exit             - [0]
+"
+
+sellang_rutrue="[TL] Выбери пункт чтобы продолжить
+#Установлено
+--------------
+#ОткрытьTL        - [3]
+#Переустановить   - [4]
+#Деинсталлировать - [5]
+#Выйти            - [0]
+"
+
+sellang_enfalse="Something went wrong...
+
+[TL] Select an item to continue
+#Damaged
+--------------
+#Reinstall        - [4]
+#Uinstall         - [5]
+#Exit             - [0]
+"
+
+sellang_rufalse="Что то пошло не так...
+
+[TL] Выбери пункт чтобы продолжить
+#Повреждено
+--------------
+#Переустановить   - [4]
+#Деинсталлировать - [5]
+#Выйти            - [0]
+"
+
+sellang_newbie="[TL] Select language
+#Install
+#English          - [1]
+#Russian          - [2]
+--------------
+#Exit             - [0]
+"
+
+oops_en="Something went wrong...
+"
+oops_ru="Что то пошло не так...
+"
+
+aus_en="Are you sure you want to continue? [y/n]"
+aus_ru="Вы точно хотите продолжить? [y/n]"
+
+reposupdate_en="[TL] Updating repositories"
+reposupdate_ru="[TL] Обновление репозиториев"
+reposupdate_c_en="[TL] Repository update completed"
+reposupdate_c_ru="[TL] Обновление репозиториев завершено"
+
+setup_java_en="[TL] Java installation"
+setup_java_ru="[TL] Установка Java"
+setup_java_c_en="[TL] Java installation complete"
+setup_java_c_ru="[TL] Установка Java завершена"
+
+setup_git_en="[TL] Installing GIT"
+setup_git_ru="[TL] Установка GIT"
+setup_git_c_en="[TL] GIT installation complete"
+setup_git_c_ru="[TL] Установка GIT завершена"
+
+setup_unzip_en="[TL] Unzip installation"
+setup_unzip_ru="[TL] Установка Unzip"
+setup_unzip_c_en="[TL] Unzip installation ccomplete"
+setup_unzip_c_ru="[TL] Установка Unzip завершена"
+
+setup_global_en="[TL] Global folder installation"
+setup_global_ru="[TL] Установка глобальной папки"
+setup_global_c_en="[TL] Global folder installation complete"
+setup_global_c_ru="[TL] Установка глобальной папки завершена"
+
+desktop_shortcut_en="[TL] Want to create a shortcut on your desktop? (*with support) [y/n]"
+desktop_shortcut_ru="[TL] Хотите создать ярлык на рабочем столе? (*при поддерже) [y/n]"
+desktop_shortcut_c_en="[TL] Shortcut created"
+desktop_shortcut_c_ru="[TL] Ярлык создан"
+
+main_shortcut_en="[TL] Create a shortcut in the main menu? (*with support) [y/n]"
+main_shortcut_ru="[TL] Создать ярлык в главном меню? (*при поддерже) [y/n]"
+main_shortcut_c_en="[TL] Main menu shortcut created"
+main_shortcut_c_ru="[TL] Ярлык в главном меню создан"
+
+open_en="Launching the TLauncher"
+open_ru="Запуск Tlauncher-а"
+open_true_en="TLauncher is running"
+open_true_ru="TLauncher запущен"
+
+reinstallcon_en="Reinstall"
+reinstallcon_ru="Переустановить"
+reinstall_en="[TL] Reinstalling TLauncher"
+reinstall_ru="[TL] Переустановка Tlauncher-a"
+reinstall_comp_en="[TL] Reinstallation of TLauncher-a is complete"
+reinstall_comp_ru="[TL] Переустановка TLauncher-a завершена"
+reinstall_canc_en="[TL] Reinstalling TLauncher-a has been canceled"
+reinstall_canc_ru="[TL] Переустановка TLauncher-a отменена"
+
+uinstallcon_en="Uinstall"
+uinstallcon_ru="Деинсталлировать"
+uinstall_en="[TL] Uninstalling TLauncher"
+uinstall_ru="[TL] Деинсталлирование TLauncher-а"
+uinstall_comp_en="[TL] The uninstall is complete"
+uinstall_comp_ru="[TL] Деинсталлирование завершено"
+uinstall_canc_en="[TL] The uninstall has been canceled"
+uinstall_canc_ru="[TL] Деинсталлирование отменено"
+
+skip_en="[TL] Missed"
+skip_ru="[TL] Пропущенно"
+	#endtext
+infosaved="$( set -o posix; unset set_before; set | sed -e '/^_=/d' )"
+	#debuginfolast
+	#data
+name="$USER"
+desktop="$(xdg-user-dir DESKTOP)"
+pwdir="$(pwd)"
+newfile="$(date +%H%M%S%N)"
+vars="$( diff <(echo "$infosaved") <(echo "$info") | sed -e 's/^> //' -e '/^[[:digit:]].*/d' )"
+os="/etc/debian_version"
+	#enddata	
+	#log
+cd ~/
+mkdir .tlauncher
+cd .tlauncher
+mkdir logs
+cd logs
+mkdir install
+cd ../..
+	#endlog
+	#os
+if [ -e "$os" ]; then
+	deb="true"
+else
+	deb="false"
+fi
+	#endos
+	#instalstatus
+cd ~/.tlauncher/
+if [ -e vars ]; then
+	source vars
+	if [[ $installstatus = true ]]; then
+	installstatus="true"
+	fi
+	if [[ $installstatus = false ]]; then
+	installstatus="false"
+	fi
+else
+	installstatus="newbie"
+fi
+	#endinstallstatus
+	#login
+cd ~/.tlauncher/logs/install
+(
+	#debugecho
+	#osvars
+echo "$vars"
+echo "
+#
+"
+	#endosvars
+	#instaltruefalse
+echo "OS Debian? $deb"
+echo "Installed? $installstatus"
+printf '\033[8;30;120t'
+clear
+	#endinstaltruefalse
+	#enddebugecho
+	#code
+	#newbie
+while [[ $deb = true && $installstatus = newbie && $num_of_sel_lang != 1 && $num_of_sel_lang != 2 && $num_of_sel_lang != 0 ]]; do
+
+if [[ $num_of_sel_lang = $clr ]]; then
+	num_of_sel_lang=""
+	echo "$tlauncher_install"
+	echo "$sellang_newbie"
+	read num_of_sel_lang
+	clear
+fi
+
+if [[ $num_of_sel_lang != $clr && $num_of_sel_lang != 1 && $num_of_sel_lang != 2 && $num_of_sel_lang != 0 ]]; then
+	num_of_sel_lang=""
+	echo "$oops_en"
+	echo "$tlauncher_install"
+	echo "$sellang_newbie"
+	read num_of_sel_lang
+	clear
+
+fi
+done
+	#endnewbie
+	#true
+while [[ $deb = true && $installstatus = true && $num_of_sel_lang != 3 && $num_of_sel_lang != 4 && $num_of_sel_lang != 5 && $num_of_sel_lang != 0 ]]; do
+
+if [[ $num_of_sel_lang = $clr && $language = en ]]; then
+	num_of_sel_lang=""
+	echo "$tlauncher_install"
+	echo "$sellang_entrue"
+	read num_of_sel_lang
+	clear
+fi
+
+if [[ $num_of_sel_lang != $clr && $language = en && $num_of_sel_lang != 3 && $num_of_sel_lang != 4 && $num_of_sel_lang != 5 && $num_of_sel_lang != 0 ]]; then
+	num_of_sel_lang=""
+	echo "$oops_en"
+	echo "$tlauncher_install"
+	echo "$sellang_entrue"
+	read num_of_sel_lang
+	clear
+
+fi
+
+if [[ $num_of_sel_lang = $clr && $language = ru ]]; then
+	num_of_sel_lang=""
+	echo "$tlauncher_install"
+	echo "$sellang_rutrue"
+	read num_of_sel_lang
+	clear
+fi
+
+if [[ $num_of_sel_lang != $clr && $language = ru && $num_of_sel_lang != 3 && $num_of_sel_lang != 4 && $num_of_sel_lang != 5 && $num_of_sel_lang != 0 ]]; then
+	num_of_sel_lang=""
+	echo "$oops_ru"
+	echo "$tlauncher_install"
+	echo "$sellang_rutrue"
+	read num_of_sel_lang
+	clear
+
+fi
+done
+	#endtrue
+	#false
+while [[ $deb = true && $installstatus = false && $num_of_sel_lang != 4 && $num_of_sel_lang != 5 && $num_of_sel_lang != 0 ]]; do
+
+if [[ $num_of_sel_lang = $clr && $language = en ]]; then
+	num_of_sel_lang=""
+	echo "$tlauncher_install"
+	echo "$sellang_enfalse"
+	read num_of_sel_lang
+	clear
+fi
+
+if [[ $num_of_sel_lang != $clr && $language = en && $num_of_sel_lang != 4 && $num_of_sel_lang != 5 && $num_of_sel_lang != 0 ]]; then
+	num_of_sel_lang=""
+	echo "$oops_en"
+	echo "$tlauncher_install"
+	echo "$sellang_enfalse"
+	read num_of_sel_lang
+	clear
+fi
+
+if [[ $num_of_sel_lang = $clr && $language = ru ]]; then
+	num_of_sel_lang=""
+	echo "$tlauncher_install"
+	echo "$sellang_rufalse"
+	read num_of_sel_lang
+	clear
+fi
+
+if [[ $num_of_sel_lang != $clr && $language = ru && $num_of_sel_lang != 4 && $num_of_sel_lang != 5 && $num_of_sel_lang != 0 ]]; then
+	num_of_sel_lang=""
+	echo "$oops_ru"
+	echo "$tlauncher_install"
+	echo "$sellang_rufalse"
+	read num_of_sel_lang
+	clear
+fi
+done
+	#endfalse
+	#deberr
+if [[ $deb = false ]]; then
+	echo "$oops"
+	echo "$tlauncher_install"
+fi
+	#enddeberr
+	#en
+if [[ $num_of_sel_lang = 1 ]]; then
+	while [[ $aus != y && $aus != n ]]; do	
+	if [[ $aus = $clr ]]; then
+		aus=""
+		clear
+		echo "$confirm_install"
+		echo "$aus_en"
+		read aus
+	fi
+	if [[ $aus != $clr && $aus != y && $aus != n ]]; then
+		aus=""
+		clear
+		echo "$oops_en"
+		echo "$confirm_install"
+		echo "$aus_en"
+		read aus
+	fi
+	done
+	#y
+	if [[ $aus = y ]]; then
+	cd ~/.tlauncher
+	echo "language=en" >> vars
+	echo "installstatus="false"" >> vars
+	clear
+	echo "$repoupdate"
+	echo "$reposupdate_en"
+	sudo apt-get update
+	echo "$reposupdate_c_en"
+	sleep 2
+	clear
+	echo "$java"
+	echo "$setup_java_en"
+	sudo apt install default-jre
+	echo "$setup_java_c_en"
+	sleep 2
+	clear
+	echo "$git"
+	echo "$setup_git_en"
+	sudo apt-get install git
+	echo "$setup_git_c_en"
+	sleep 2
+	clear
+	echo "$unzip"
+	echo "$setup_unzip_en"
+	sudo apt install unzip
+	sudo apt-get install wget
+	echo "$setup_unzip_c_en"
+	sleep 2
+	clear
+	echo "$global_f"
+	echo "$setup_global_en"
+	cd ~/.tlauncher/
+	rm -rfv temp
+	mkdir -v temp
+	cd temp
+	wget https://tlauncher.org/jar
+	jar=$(ls)
+	unzip -j $jar
+	tl=$(ls *.jar)
+	mv -v $tl ../
+	cd ../
+	echo "tlauncherjar=$tl" >> vars
+	rm -rfv temp
+	rm -rfv addonstl
+	git clone https://github.com/zaqygo/addonstl
+	cd addonstl
+	mv -v open ../
+	mv -v uinstall ../
+	echo "$setup_global_c_en"
+	sleep 2
+	clear
+	while [[ $desktop_shortcut != y && $desktop_shortcut != n ]]; do	
+	if [[ $desktop_shortcut = $clr ]]; then
+		desktop_shortcut=""
+		clear
+		echo "$icon_d"
+		echo "$desktop_shortcut_en"
+		read desktop_shortcut
+	fi
+	if [[ $desktop_shortcut != $clr && $desktop_shortcut != y && $desktop_shortcut != n ]]; then
+		desktop_shortcut=""
+		clear
+		echo "$oops_en"
+		echo "$icon_d"
+		echo "$desktop_shortcut_en"
+		read desktop_shortcut
+	fi
+	done
+	if [[ $desktop_shortcut = y ]]; then
+		cd "$desktop"
+echo "[Desktop Entry]
+Version=1.0
+Name=TLauncher
+Name[ru]=TLauncher
+Comment=Best minecraft launcher
+Comment[ru]=Лучший майнкрафт лаунчер
+GenericName=Minecraft
+GenericName[ru]=Майнкрафт
+Keywords=Minecraft;tlauncher;Tlauncher;Mining
+Keywords[ru]=Майнкрафт;тлаунчер;Тлаунчер
+Exec=java -jar /home/"$name"/.tlauncher/TLauncher.jar
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/home/"$name"/.tlauncher/addonstl/minecraft-icon.png
+Categories=GNOME;GTK;Game;
+StartupNotify=true" | tee TLauncher.desktop > /dev/null
+		cd "$desktop"
+		chmod ugo+x TLauncher.desktop
+		gio set TLauncher.desktop metadata::trusted true
+		echo "$desktop_shortcut_c_en"
+		cd
+		sleep 2
+		clear
+	fi
+	if [[ $desktop_shortcut = n ]]; then
+		echo "$skip_en"
+		sleep 2
+		clear
+	fi
+	cd ~/.tlauncher/
+	echo "desktopiconl=$desktop_shortcut" >> vars
+	while [[ $main_shortcut != y && $main_shortcut != n ]]; do	
+	if [[ $main_shortcut = $clr ]]; then
+		main_shortcut=""
+		clear
+		echo "$icon_m"
+		echo "$main_shortcut_en"
+		read main_shortcut
+	fi
+	if [[ $main_shortcut != $clr && $main_shortcut != y && $main_shortcut != n ]]; then
+		main_shortcut=""
+		clear
+		echo "$oops_en"
+		echo "$icon_m"
+		echo "$main_shortcut_en"
+		read main_shortcut
+	fi
+	done
+	if [[ $main_shortcut = y ]]; then
+		cd ~/.local/share/applications/
+echo "[Desktop Entry]
+Version=1.0
+Name=TLauncher
+Name[ru]=TLauncher
+Comment=Best minecraft launcher
+Comment[ru]=Лучший майнкрафт лаунчер
+GenericName=Minecraft
+GenericName[ru]=Майнкрафт
+Keywords=Minecraft;tlauncher;Tlauncher;Mining
+Keywords[ru]=Майнкрафт;тлаунчер;Тлаунчер
+Exec=java -jar /home/"$name"/.tlauncher/TLauncher.jar
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/home/"$name"/.tlauncher/addonstl/minecraft-icon.png
+Categories=GNOME;GTK;Game;
+StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
+		echo "$main_shortcut_c_en"
+		cd
+		sleep 2
+		clear
+	fi
+	if [[ $main_shortcut = n ]]; then
+		echo "$skip_en"
+		sleep 2
+		clear
+	fi
+	cd ~/.tlauncher/
+	echo "desktopiconl=$main_shortcut" >> vars
+	echo "installstatus="true"" >> vars
+	echo "lang!language=ru desktopiconl!desktopiconl=$desktop_shortcut mainiconl!mainiconl=$main_shortcut installstatus!installstatus="true""
+	cd "$pwdir"
+	clear
+	echo "$tlauncher_icon_sc"
+	fi
+	#endy
+	#n
+	if [[ $aus = n ]]; then
+	clear
+	echo "$exitlol"
+	fi
+	#endn
+fi
+	#enden
+	#ru
+if [[ $num_of_sel_lang = 2 ]]; then
+	while [[ $aus != y && $aus != n ]]; do	
+	if [[ $aus = $clr ]]; then
+		aus=""
+		clear
+		echo "$confirm_install"
+		echo "$aus_ru"
+		read aus
+	fi
+	if [[ $aus != $clr && $aus != y && $aus != n ]]; then
+		aus=""
+		clear
+		echo "$oops_ru"
+		echo "$confirm_install"
+		echo "$aus_ru"
+		read aus
+	fi
+	done
+	#y
+	if [[ $aus = y ]]; then
+	cd ~/.tlauncher
+	echo "language=ru" >> vars
+	echo "installstatus="false"" >> vars
+	clear
+	echo "$repoupdate"
+	echo "$reposupdate_ru"
+	sudo apt-get update
+	echo "$reposupdate_c_ru"
+	sleep 2
+	clear
+	echo "$java"
+	echo "$setup_java_ru"
+	sudo apt install default-jre
+	echo "$setup_java_c_ru"
+	sleep 2
+	clear
+	echo "$git"
+	echo "$setup_git_ru"
+	sudo apt-get install git
+	echo "$setup_git_c_ru"
+	sleep 2
+	clear
+	echo "$unzip"
+	echo "$setup_unzip_ru"
+	sudo apt install unzip
+	sudo apt-get install wget
+	echo "$setup_unzip_c_ru"
+	sleep 2
+	clear
+	echo "$global_f"
+	echo "$setup_global_ru"
+	cd ~/.tlauncher/
+	rm -rfv temp
+	mkdir temp
+	cd temp
+	wget https://tlauncher.org/jar
+	jar=$(ls)
+	unzip -j $jar
+	tl=$(ls *.jar)
+	mv -v $tl ../
+	cd ../
+	echo "tlauncherjar=$tl" >> vars
+	rm -rfv temp
+	rm -rfv addonstl
+	git clone https://github.com/zaqygo/addonstl
+	cd addonstl
+	mv -v open ../
+	mv -v uinstall ../
+	echo "$setup_global_c_ru"
+	sleep 2
+	clear
+	while [[ $desktop_shortcut != y && $desktop_shortcut != n ]]; do	
+	if [[ $desktop_shortcut = $clr ]]; then
+		desktop_shortcut=""
+		clear
+		echo "$icon_d"
+		echo "$desktop_shortcut_ru"
+		read desktop_shortcut
+	fi
+	if [[ $desktop_shortcut != $clr && $desktop_shortcut != y && $desktop_shortcut != n ]]; then
+		desktop_shortcut=""
+		clear
+		echo "$oops_ru"
+		echo "$icon_d"
+		echo "$desktop_shortcut_ru"
+		read desktop_shortcut
+	fi
+	done
+	if [[ $desktop_shortcut = y ]]; then
+		cd "$desktop"
+echo "[Desktop Entry]
+Version=1.0
+Name=TLauncher
+Name[ru]=TLauncher
+Comment=Best minecraft launcher
+Comment[ru]=Лучший майнкрафт лаунчер
+GenericName=Minecraft
+GenericName[ru]=Майнкрафт
+Keywords=Minecraft;tlauncher;Tlauncher;Mining
+Keywords[ru]=Майнкрафт;тлаунчер;Тлаунчер
+Exec=java -jar /home/"$name"/.tlauncher/TLauncher.jar
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/home/"$name"/.tlauncher/addonstl/minecraft-icon.png
+Categories=GNOME;GTK;Game;
+StartupNotify=true" | tee TLauncher.desktop > /dev/null
+		chmod ugo+x TLauncher.desktop
+		gio set TLauncher.desktop metadata::trusted true
+		echo "$desktop_shortcut_c_ru"
+		cd
+		sleep 2
+		clear
+	fi
+	if [[ $desktop_shortcut = n ]]; then
+		echo "$skip_ru"
+		sleep 2
+		clear
+	fi
+	cd ~/.tlauncher/
+	echo "desktopiconl=$desktop_shortcut" >> vars
+	while [[ $main_shortcut != y && $main_shortcut != n ]]; do	
+	if [[ $main_shortcut = $clr ]]; then
+		main_shortcut=""
+		clear
+		echo "$icon_m"
+		echo "$main_shortcut_ru"
+		read main_shortcut
+	fi
+	if [[ $main_shortcut != $clr && $main_shortcut != y && $main_shortcut != n ]]; then
+		main_shortcut=""
+		clear
+		echo "$oops_ru"
+		echo "$icon_m"
+		echo "$main_shortcut_ru"
+		read main_shortcut
+	fi
+	done
+	if [[ $main_shortcut = y ]]; then
+		cd ~/.local/share/applications/
+echo "[Desktop Entry]
+Version=1.0
+Name=TLauncher
+Name[ru]=TLauncher
+Comment=Best minecraft launcher
+Comment[ru]=Лучший майнкрафт лаунчер
+GenericName=Minecraft
+GenericName[ru]=Майнкрафт
+Keywords=Minecraft;tlauncher;Tlauncher;Mining
+Keywords[ru]=Майнкрафт;тлаунчер;Тлаунчер
+Exec=java -jar /home/"$name"/.tlauncher/TLauncher.jar
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/home/"$name"/.tlauncher/addonstl/minecraft-icon.png
+Categories=GNOME;GTK;Game;
+StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
+		echo "$main_shortcut_c_ru"
+		cd
+		sleep 2
+		clear
+	fi
+	if [[ $main_shortcut = n ]]; then
+		echo "$skip_ru"
+		sleep 2
+		clear
+	fi
+	cd ~/.tlauncher/
+	echo "desktopiconl=$main_shortcut" >> vars
+	echo "installstatus="true"" >> vars
+	echo "lang!language=ru desktopiconl!desktopiconl=$desktop_shortcut mainiconl!mainiconl=$main_shortcut installstatus!installstatus="true""
+	cd "$pwdir"
+	clear
+	echo "$tlauncher_icon_sc"
+	fi
+	#endy
+	#n
+	if [[ $aus = n ]]; then
+	clear
+	echo "$exitlol"
+	fi
+	#endn
+fi
+	#endru
+	#open
+if [[ $num_of_sel_lang = 3 ]]; then
+	if [[ $language = en ]]; then
+		echo "$tlauncher_open"
+		echo "$open_en"
+		cd ~/.tlauncher/
+		java -jar TLauncher.jar &
+		echo "$open_true_en"
+	fi
+	if [[ $language = ru ]]; then
+		echo "$tlauncher_open"
+		echo "$open_ru"
+		cd ~/.tlauncher/
+		java -jar TLauncher.jar &
+		echo "$open_true_ru"
+	fi
+	
+fi
+	#endopen
+	#reinstall
+if [[ $num_of_sel_lang = 4 ]]; then
+	while [[ $language = en && $aus != y && $aus != n ]]; do
+		if [[ $aus = $clr ]]; then
+		aus=""
+		clear
+		echo "$confirm_install"
+		echo "$reinstallcon_en"
+		echo "$aus_en"
+		read aus
+	fi
+	if [[ $aus != $clr && $aus != y && $aus != n ]]; then
+		aus=""
+		clear
+		echo "$oops_en"
+		echo "$confirm_install"
+		echo "$reinstallcon_en"
+		echo "$aus_en"
+		read aus
+	fi
+	done
+	while [[ $language = ru && $aus != y && $aus != n ]]; do
+		if [[ $aus = $clr ]]; then
+		aus=""
+		clear
+		echo "$confirm_install"
+		echo "$reinstallcon_ru"
+		echo "$aus_ru"
+		read aus
+	fi
+	if [[ $aus != $clr && $aus != y && $aus != n ]]; then
+		aus=""
+		clear
+		echo "$oops_ru"
+		echo "$confirm_install"
+		echo "$reinstallcon_ru"
+		echo "$aus_ru"
+		read aus
+	fi
+	done
+	if [[ $aus = y && $language = en ]]; then
+		echo "$tlauncher_reinstall"
+		echo "$reinstall_en"
+		cd ~/.tlauncher/
+		echo "installstatus="false"" >> vars
+		rm -fv "$tlauncherjar"
+		rm -rfv addonstl
+		cd "$desktop"
+		sudo rm -fv TLauncher.desktop
+		cd ~/.local/share/applications
+		sudo rm -fv TLauncher.desktop
+		cd ~/.tlauncher/
+		rm -rfv temp
+		mkdir -v temp
+		cd temp
+		wget https://tlauncher.org/jar
+		jar=$(ls)
+		unzip -j $jar
+		tl=$(ls *.jar)
+		mv -v $tl ../
+		cd ../
+		echo "tlauncherjar=$tl" >> vars
+		rm -rfv temp
+		git clone https://github.com/zaqygo/addonstl
+		cd addonstl
+		mv -v open ../
+		mv -v uinstall ../
+		echo "$setup_global_c_en"
+		sleep 2
+		clear
+		while [[ $desktop_shortcut != y && $desktop_shortcut != n ]]; do	
+			if [[ $desktop_shortcut = $clr ]]; then
+				desktop_shortcut=""
+				clear
+				echo "$icon_d"
+				echo "$desktop_shortcut_en"
+				read desktop_shortcut
+			fi
+			if [[ $desktop_shortcut != $clr && $desktop_shortcut != y && $desktop_shortcut != n ]]; then
+				desktop_shortcut=""
+				clear
+				echo "$oops_en"
+				echo "$icon_d"
+				echo "$desktop_shortcut_en"
+				read desktop_shortcut
+			fi
+		done
+		if [[ $desktop_shortcut = y ]]; then
+			cd "$desktop"
+echo "[Desktop Entry]
+Version=1.0
+Name=TLauncher
+Name[ru]=TLauncher
+Comment=Best minecraft launcher
+Comment[ru]=Лучший майнкрафт лаунчер
+GenericName=Minecraft
+GenericName[ru]=Майнкрафт
+Keywords=Minecraft;tlauncher;Tlauncher;Mining
+Keywords[ru]=Майнкрафт;тлаунчер;Тлаунчер
+Exec=java -jar /home/"$name"/.tlauncher/TLauncher.jar
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/home/"$name"/.tlauncher/addonstl/minecraft-icon.png
+Categories=GNOME;GTK;Game;
+StartupNotify=true" | tee TLauncher.desktop > /dev/null
+			cd "$desktop"
+			chmod ugo+x TLauncher.desktop
+			gio set TLauncher.desktop metadata::trusted true
+			echo "$desktop_shortcut_c_en"
+			cd
+			sleep 2
+			clear
+		fi
+		if [[ $desktop_shortcut = n ]]; then
+			echo "$skip_en"
+			sleep 2
+			clear
+		fi
+		cd ~/.tlauncher/
+		echo "desktopiconl=$desktop_shortcut" >> vars
+		while [[ $main_shortcut != y && $main_shortcut != n ]]; do	
+			if [[ $main_shortcut = $clr ]]; then
+				main_shortcut=""
+				clear
+				echo "$icon_m"
+				echo "$main_shortcut_en"
+				read main_shortcut
+			fi
+			if [[ $main_shortcut != $clr && $main_shortcut != y && $main_shortcut != n ]]; then
+				main_shortcut=""
+				clear
+				echo "$oops_en"
+				echo "$icon_m"
+				echo "$main_shortcut_en"
+				read main_shortcut
+			fi
+		done
+		if [[ $main_shortcut = y ]]; then
+			cd ~/.local/share/applications/
+echo "[Desktop Entry]
+Version=1.0
+Name=TLauncher
+Name[ru]=TLauncher
+Comment=Best minecraft launcher
+Comment[ru]=Лучший майнкрафт лаунчер
+GenericName=Minecraft
+GenericName[ru]=Майнкрафт
+Keywords=Minecraft;tlauncher;Tlauncher;Mining
+Keywords[ru]=Майнкрафт;тлаунчер;Тлаунчер
+Exec=java -jar /home/"$name"/.tlauncher/TLauncher.jar
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/home/"$name"/.tlauncher/addonstl/minecraft-icon.png
+Categories=GNOME;GTK;Game;
+StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
+			echo "$main_shortcut_c_en"
+			cd
+			sleep 2
+			clear
+		fi
+		if [[ $main_shortcut = n ]]; then
+			echo "$skip_en"
+			sleep 2
+			clear
+		fi
+		cd ~/.tlauncher/
+		echo "desktopiconl=$main_shortcut" >> vars
+		echo "installstatus="true"" >> vars
+		cd "$pwdir"
+		echo "$reinstall_comp_en"
+		sleep 2
+		clear
+		echo "$tlauncher_icon_rc"
+	fi
+	if [[ $aus = y && $language = ru ]]; then
+		echo "$tlauncher_reinstall"
+		echo "$reinstall_ru"
+		cd ~/.tlauncher/
+		echo "installstatus="false"" >> vars
+		rm -fv "$tlauncherjar"
+		rm -rfv addonstl
+		cd "$desktop"
+		sudo rm -fv TLauncher.desktop
+		cd ~/.local/share/applications
+		sudo rm -fv TLauncher.desktop	
+		cd ~/.tlauncher/
+		rm -rfv temp
+		mkdir -v temp
+		cd temp
+		wget https://tlauncher.org/jar
+		jar=$(ls)
+		unzip -j $jar
+		tl=$(ls *.jar)
+		mv -v $tl ../
+		cd ../
+		echo "tlauncherjar=$tl" >> vars
+		rm -rfv temp
+		git clone https://github.com/zaqygo/addonstl
+		cd addonstl
+		mv -v open ../
+		mv -v uinstall ../
+		echo "$setup_global_c_ru"
+		sleep 2
+		clear
+		while [[ $desktop_shortcut != y && $desktop_shortcut != n ]]; do	
+			if [[ $desktop_shortcut = $clr ]]; then
+				desktop_shortcut=""
+				clear
+				echo "$icon_d"
+				echo "$desktop_shortcut_ru"
+				read desktop_shortcut
+			fi
+			if [[ $desktop_shortcut != $clr && $desktop_shortcut != y && $desktop_shortcut != n ]]; then
+				desktop_shortcut=""
+				clear
+				echo "$oops_ru"
+				echo "$icon_d"
+				echo "$desktop_shortcut_ru"
+				read desktop_shortcut
+			fi
+		done
+		if [[ $desktop_shortcut = y ]]; then
+			cd "$desktop"
+echo "[Desktop Entry]
+Version=1.0
+Name=TLauncher
+Name[ru]=TLauncher
+Comment=Best minecraft launcher
+Comment[ru]=Лучший майнкрафт лаунчер
+GenericName=Minecraft
+GenericName[ru]=Майнкрафт
+Keywords=Minecraft;tlauncher;Tlauncher;Mining
+Keywords[ru]=Майнкрафт;тлаунчер;Тлаунчер
+Exec=java -jar /home/"$name"/.tlauncher/TLauncher.jar
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/home/"$name"/.tlauncher/addonstl/minecraft-icon.png
+Categories=GNOME;GTK;Game;
+StartupNotify=true" | tee TLauncher.desktop > /dev/null
+			cd "$desktop"
+			chmod ugo+x TLauncher.desktop
+			gio set TLauncher.desktop metadata::trusted true
+			echo "$desktop_shortcut_c_ru"
+			cd 
+			sleep 2
+			clear
+		fi
+		if [[ $desktop_shortcut = n ]]; then
+			echo "$skip_ru"
+			sleep 2
+			clear
+		fi
+		cd ~/.tlauncher/
+		echo "desktopiconl=$desktop_shortcut" >> vars
+		while [[ $main_shortcut != y && $main_shortcut != n ]]; do	
+			if [[ $main_shortcut = $clr ]]; then
+				main_shortcut=""
+				clear
+				echo "$icon_m"
+				echo "$main_shortcut_ru"
+				read main_shortcut
+			fi
+			if [[ $main_shortcut != $clr && $main_shortcut != y && $main_shortcut != n ]]; then
+				main_shortcut=""
+				clear
+				echo "$oops_ru"
+				echo "$icon_m"
+				echo "$main_shortcut_ru"
+				read main_shortcut
+			fi
+		done
+		if [[ $main_shortcut = y ]]; then
+			cd ~/.local/share/applications/
+echo "[Desktop Entry]
+Version=1.0
+Name=TLauncher
+Name[ru]=TLauncher
+Comment=Best minecraft launcher
+Comment[ru]=Лучший майнкрафт лаунчер
+GenericName=Minecraft
+GenericName[ru]=Майнкрафт
+Keywords=Minecraft;tlauncher;Tlauncher;Mining
+Keywords[ru]=Майнкрафт;тлаунчер;Тлаунчер
+Exec=java -jar /home/"$name"/.tlauncher/TLauncher.jar
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/home/"$name"/.tlauncher/addonstl/minecraft-icon.png
+Categories=GNOME;GTK;Game;
+StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
+			echo "$main_shortcut_c_ru"
+			cd
+			sleep 2
+			clear
+		fi
+		if [[ $main_shortcut = n ]]; then
+			echo "$skip_ru"
+			sleep 2
+			clear
+		fi
+		cd ~/.tlauncher/
+		echo "desktopiconl=$main_shortcut" >> vars
+		echo "installstatus="true"" >> vars
+		cd "$pwdir"
+		echo "$reinstall_comp_ru"
+		sleep 2
+		clear
+		echo "$tlauncher_icon_rc"
+	fi
+	
+	if [[ $aus = n && $language = en ]]; then
+		echo "$reinstall_canc_en"
+		sleep 2
+		clear
+		echo "$exitlol"
+	fi
+	if [[ $aus = n && $language = ru ]]; then
+		echo "$reinstall_canc_ru"
+		sleep 2
+		clear
+		echo "$exitlol"
+	fi	
+fi
+	#endreinstall
+	#uinstall
+if [[ $num_of_sel_lang = 5 ]]; then
+	while [[ $language = en && $aus != y && $aus != n ]]; do
+		if [[ $aus = $clr ]]; then
+			aus=""
+			clear
+			echo "$confirm_install"
+			echo "$uinstallcon_en"
+			echo "$aus_en"
+			read aus
+		fi
+		if [[ $aus != $clr && $aus != y && $aus != n ]]; then
+			aus=""
+			clear
+			echo "$oops_en"
+			echo "$confirm_install"
+			echo "$uinstallcon_en"
+			echo "$aus_en"
+			read aus
+		fi
+		done
+	while [[ $language = ru && $aus != y && $aus != n ]]; do
+		if [[ $aus = $clr ]]; then
+			aus=""
+			clear
+			echo "$confirm_install"
+			echo "$uinstallcon_ru"
+			echo "$aus_ru"
+			read aus
+		fi
+		if [[ $aus != $clr && $aus != y && $aus != n ]]; then
+			aus=""
+			clear
+			echo "$oops_ru"
+			echo "$confirm_install"
+			echo "$uinstallcon_ru"
+			echo "$aus_ru"
+			read aus
+		fi
+	done
+	if [[ $aus = y && $language = en ]]; then
+		echo "$tlauncher_uinstall"
+		echo "$uinstall_en"
+		cd ~/
+		rm -rfv .tlauncher
+		rm -rfv .minecraft
+		cd "$desktop"
+		sudo rm -fv TLauncher.desktop
+		cd ~/.local/share/applications
+		sudo rm -fv TLauncher.desktop
+		cd "$pwdir"
+		echo "$uinstall_comp_en"
+		sleep 2
+		clear
+		echo "$tlauncher_icon_uc"
+	fi
+	if [[ $aus = y && $language = ru ]]; then
+		echo "$tlauncher_uinstall"
+		echo "$uinstall_ru"
+		cd ~/
+		rm -rfv .tlauncher
+		rm -rfv .minecraft
+		cd "$desktop"
+		sudo rm -fv TLauncher.desktop
+		cd ~/.local/share/applications
+		sudo rm -fv TLauncher.desktop
+		cd "$pwdir"
+		echo "$uinstall_comp_ru"
+		sleep 2
+		clear
+		echo "$tlauncher_icon_uc"
+	fi
+	if [[ $aus = n && $language = en ]]; then
+		cd "$pwdir"
+		echo "$uinstall_canc_en"
+		sleep 2
+		clear
+		echo "$exitlol"
+	fi
+	if [[ $aus = n && $language = ru ]]; then
+		cd "$pwdir"
+		echo "$uinstall_canc_ru"
+		sleep 2
+		clear
+		echo "$exitlol"
+	fi
+fi
+	#enduinstall
+	#exit:>
+if [[ $num_of_sel_lang = 0 ]]; then
+	echo "$exitlol"
+fi
+	#endexit
+) | tee -a log$newfile$name.txt
+	#logout
+
+exit
+
+#Copyright zaqygo/nn: Zaqs github.com
+/bin/bash
