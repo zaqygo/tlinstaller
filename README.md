@@ -1,2 +1,2 @@
 # tlinstaller
-Tlauncher Installer look lile default windows installer
+Tlauncher Installer look like default windows installer
