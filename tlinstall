@@ -471,7 +471,6 @@ if [[ $num_of_sel_lang = 1 ]]; then
 	if [[ $aus = y ]]; then
 	cd ~/.tlauncher
 	echo "language=en" >> vars
-	echo "installstatus="false"" >> vars
 	clear
 	echo "$repoupdate"
 	echo "$reposupdate_en"
@@ -500,6 +499,7 @@ if [[ $num_of_sel_lang = 1 ]]; then
 	clear
 	echo "$global_f"
 	echo "$setup_global_en"
+	echo "installstatus="false"" >> vars
 	cd ~/.tlauncher/
 	rm -rfv temp
 	mkdir -v temp
@@ -658,7 +658,6 @@ if [[ $num_of_sel_lang = 2 ]]; then
 	if [[ $aus = y ]]; then
 	cd ~/.tlauncher
 	echo "language=ru" >> vars
-	echo "installstatus="false"" >> vars
 	clear
 	echo "$repoupdate"
 	echo "$reposupdate_ru"
@@ -687,6 +686,7 @@ if [[ $num_of_sel_lang = 2 ]]; then
 	clear
 	echo "$global_f"
 	echo "$setup_global_ru"
+	echo "installstatus="false"" >> vars
 	cd ~/.tlauncher/
 	rm -rfv temp
 	mkdir temp
