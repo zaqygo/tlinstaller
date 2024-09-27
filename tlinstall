@@ -269,8 +269,6 @@ reinstallcon_en="Reinstall"
 reinstallcon_ru="Переустановить"
 reinstall_en="[TL] Reinstalling TLauncher"
 reinstall_ru="[TL] Переустановка Tlauncher-a"
-reinstall_comp_en="[TL] Reinstallation of TLauncher-a is complete"
-reinstall_comp_ru="[TL] Переустановка TLauncher-a завершена"
 reinstall_canc_en="[TL] Reinstalling TLauncher-a has been canceled"
 reinstall_canc_ru="[TL] Переустановка TLauncher-a отменена"
 
@@ -519,6 +517,8 @@ if [[ $num_of_sel_lang = 1 ]]; then
 	cd addonstl
 	mv -v open ../
 	mv -v uinstall ../
+	cd ~/.tlauncher/
+	echo "installstatus="true"" >> vars
 	echo "$setup_global_c_en"
 	sleep 2
 	clear
@@ -621,7 +621,6 @@ StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
 	fi
 	cd ~/.tlauncher/
 	echo "desktopiconl=$main_shortcut" >> vars
-	echo "installstatus="true"" >> vars
 	echo "lang!language=ru desktopiconl!desktopiconl=$desktop_shortcut mainiconl!mainiconl=$main_shortcut installstatus!installstatus="true""
 	cd "$pwdir"
 	clear
@@ -705,6 +704,8 @@ if [[ $num_of_sel_lang = 2 ]]; then
 	cd addonstl
 	mv -v open ../
 	mv -v uinstall ../
+	cd ~/.tlauncher/
+	echo "installstatus="true"" >> vars
 	echo "$setup_global_c_ru"
 	sleep 2
 	clear
@@ -806,7 +807,6 @@ StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
 	fi
 	cd ~/.tlauncher/
 	echo "desktopiconl=$main_shortcut" >> vars
-	echo "installstatus="true"" >> vars
 	echo "lang!language=ru desktopiconl!desktopiconl=$desktop_shortcut mainiconl!mainiconl=$main_shortcut installstatus!installstatus="true""
 	cd "$pwdir"
 	clear
@@ -881,6 +881,7 @@ if [[ $num_of_sel_lang = 4 ]]; then
 	fi
 	done
 	if [[ $aus = y && $language = en ]]; then
+		clear
 		echo "$tlauncher_reinstall"
 		echo "$reinstall_en"
 		cd ~/.tlauncher/
@@ -1011,12 +1012,10 @@ StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
 		echo "desktopiconl=$main_shortcut" >> vars
 		echo "installstatus="true"" >> vars
 		cd "$pwdir"
-		echo "$reinstall_comp_en"
-		sleep 2
-		clear
 		echo "$tlauncher_icon_rc"
 	fi
 	if [[ $aus = y && $language = ru ]]; then
+		clear
 		echo "$tlauncher_reinstall"
 		echo "$reinstall_ru"
 		cd ~/.tlauncher/
@@ -1147,9 +1146,6 @@ StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
 		echo "desktopiconl=$main_shortcut" >> vars
 		echo "installstatus="true"" >> vars
 		cd "$pwdir"
-		echo "$reinstall_comp_ru"
-		sleep 2
-		clear
 		echo "$tlauncher_icon_rc"
 	fi
 	
