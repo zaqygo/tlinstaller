@@ -1148,12 +1148,14 @@ StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
 	fi
 	
 	if [[ $aus = n && $language = en ]]; then
+		clear
 		echo "$reinstall_canc_en"
 		sleep 2
 		clear
 		echo "$exitlol"
 	fi
 	if [[ $aus = n && $language = ru ]]; then
+		clear
 		echo "$reinstall_canc_ru"
 		sleep 2
 		clear
@@ -1202,6 +1204,7 @@ if [[ $num_of_sel_lang = 5 ]]; then
 		fi
 	done
 	if [[ $aus = y && $language = en ]]; then
+		clear
 		echo "$tlauncher_uinstall"
 		echo "$uinstall_en"
 		cd ~/
@@ -1217,6 +1220,7 @@ if [[ $num_of_sel_lang = 5 ]]; then
 		echo "$tlauncher_icon_uc"
 	fi
 	if [[ $aus = y && $language = ru ]]; then
+		clear
 		echo "$tlauncher_uinstall"
 		echo "$uinstall_ru"
 		cd ~/
@@ -1232,6 +1236,7 @@ if [[ $num_of_sel_lang = 5 ]]; then
 		echo "$tlauncher_icon_uc"
 	fi
 	if [[ $aus = n && $language = en ]]; then
+		clear
 		cd "$pwdir"
 		echo "$uinstall_canc_en"
 		sleep 2
@@ -1239,6 +1244,7 @@ if [[ $num_of_sel_lang = 5 ]]; then
 		echo "$exitlol"
 	fi
 	if [[ $aus = n && $language = ru ]]; then
+		clear
 		cd "$pwdir"
 		echo "$uinstall_canc_ru"
 		sleep 2
