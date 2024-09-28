@@ -28,9 +28,9 @@ TLinstall – это удобный инструмент для установк
 
 Запуск скрипта bash tlinstall
 Удаление TL из под директории TLauncher-а:
-cd ~/.tlauncher/
+cd ~/.tlauncher/ /n
 bash uinstall
 
 Открыти TL из под директории TLauncher-а:
-cd ~/.tlauncher/
+cd ~/.tlauncher/ /n
 bash open
