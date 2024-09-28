@@ -276,8 +276,6 @@ uinstallcon_en="Uinstall"
 uinstallcon_ru="Деинсталлировать"
 uinstall_en="[TL] Uninstalling TLauncher"
 uinstall_ru="[TL] Деинсталлирование TLauncher-а"
-uinstall_comp_en="[TL] The uninstall is complete"
-uinstall_comp_ru="[TL] Деинсталлирование завершено"
 uinstall_canc_en="[TL] The uninstall has been canceled"
 uinstall_canc_ru="[TL] Деинсталлирование отменено"
 
@@ -1214,7 +1212,6 @@ if [[ $num_of_sel_lang = 5 ]]; then
 		cd ~/.local/share/applications
 		sudo rm -fv TLauncher.desktop
 		cd "$pwdir"
-		echo "$uinstall_comp_en"
 		sleep 2
 		clear
 		echo "$tlauncher_icon_uc"
@@ -1230,7 +1227,6 @@ if [[ $num_of_sel_lang = 5 ]]; then
 		cd ~/.local/share/applications
 		sudo rm -fv TLauncher.desktop
 		cd "$pwdir"
-		echo "$uinstall_comp_ru"
 		sleep 2
 		clear
 		echo "$tlauncher_icon_uc"
