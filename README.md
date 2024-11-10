@@ -33,7 +33,7 @@ bash tlinstall
 cd ~/.tlauncher/\
 bash uinstall
 
-Открыти TL из под директории TLauncher-а:\
+Открытие TL из под директории TLauncher-а:\
 cd ~/.tlauncher/\
 bash open
 
