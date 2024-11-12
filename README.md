@@ -1,14 +1,16 @@
+<a name="TLinstall - скрипт для установки TLauncher-а">RU</a> <a name="TLinstall - the script for installing TLauncher">EN</a>
+\
 # TLinstall - скрипт для установки TLauncher-а
-В кратце
+В кратце\
 TLinstall – это удобный инструмент для установки, открытия, переустановки и удаления TLauncher, лаунчера для игры Minecraft. С помощью этого установщика вы сможете легко настроить и использовать TLauncher на вашем компьютере.
 
-Основные функции:
+Основные функции:\
 * Установка TLauncher: Программа автоматически загружает и устанавливает последнюю версию TLauncher на ваш компьютер.
 * Открытие TLauncher: После установки лаунчер доступен для запуска через меню или через ярлык на рабочем столе. (или также в скрипте)
 * Переустановка TLauncher: Если вам нужно обновить лаунчер до новой версии, программа позволяет сделать это без потери настроек и сохранений.
 * Удаление TLauncher: Для очистки системы от лаунчера и всех его файлов используйте функцию деинсталляции.
 
-Преимущества использования TLinstall:
+Преимущества использования TLinstall:\
 * Простота и удобство использования;
 * Автоматизация процесса установки и обновления;
 * Полная деинсталляция лаунчера без остатков файлов.
@@ -34,6 +36,47 @@ cd ~/.tlauncher/\
 bash uinstall
 
 Открытие TL из под директории TLauncher-а:\
+cd ~/.tlauncher/\
+bash open
+\
+\
+\
+# TLinstall - the script for installing TLauncher
+In short\
+TLinstall - is a handy tool for installing, opening, reinstalling and uninstalling TLauncher, the launcher for the Minecraft game. With this installer, you can easily set up and use TLauncher on your computer.
+
+Main functions:\
+* Launcher Installation: The program automatically downloads and installs the latest version of the Launcher on your computer.
+* Opening TLauncher: After installation, the launcher is available to launch via the menu or via a shortcut on the desktop. (or also in the script)
+* Reinstalling TLauncher: If you need to update the launcher to a new version, the program allows you to do this without losing settings and saves.
+* Launcher Removal: To clean the system from the launcher and all its files, use the uninstall function.
+
+Advantages of using Thinstall:\
+* Simplicity and convenience of use;
+* Automating the installation and update process;
+* Complete uninstall of the launcher without leftover files.
+
+# Open
+Opens TLauncher from under the console
+
+# Reinstall
+Uninstalling the jar file and TLauncher shortcuts and installing them again
+
+# Uninstall
+Full uninstall of TLauncher and Minecraft
+
+#  addonstl
+A sudo password may be required during installation. 
+If the TL input is installed incorrectly, then simply run the installation script again and select reinstall or uninstall.
+
+Running the script:\
+bash thinstall
+
+Removing TL from the TLauncher-a directory:\
+cd ~/.tlauncher/\
+bash uninstall
+
+The opening of TL under the leadership of the director of TLauncher-a:\
 cd ~/.tlauncher/\
 bash open
 
