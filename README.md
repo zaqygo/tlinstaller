@@ -39,7 +39,6 @@ bash uinstall
 cd ~/.tlauncher/\
 bash open
 
-\
 
 # TLinstall - the script for installing TLauncher
 In short\
