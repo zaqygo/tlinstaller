@@ -1,4 +1,4 @@
-[RU](https://github.com/zaqygo/tlinstaller/tree/main?tab=readme-ov-file#tlinstall---скрипт-для-установки-tlauncher-а)
+[RU](https://github.com/zaqygo/tlinstaller/tree/main?tab=readme-ov-file#tlinstall---скрипт-для-установки-tlauncher-а) [EN](https://github.com/zaqygo/tlinstaller/tree/main?tab=readme-ov-file#tlinstall---the-script-for-installing-tlauncher)
 
 # TLinstall - скрипт для установки TLauncher-а
 В кратце\
