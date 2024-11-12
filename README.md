@@ -38,8 +38,9 @@ bash uinstall
 Открытие TL из под директории TLauncher-а:\
 cd ~/.tlauncher/\
 bash open
+
 \
-\
+
 # TLinstall - the script for installing TLauncher
 In short\
 TLinstall - is a handy tool for installing, opening, reinstalling and uninstalling TLauncher, the launcher for the Minecraft game. With this installer, you can easily set up and use TLauncher on your computer.
