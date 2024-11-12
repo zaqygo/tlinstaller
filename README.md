@@ -1,5 +1,5 @@
 <a name="TLinstall - скрипт для установки TLauncher-а">RU</a> <a name="TLinstall - the script for installing TLauncher">EN</a>
-\
+
 # TLinstall - скрипт для установки TLauncher-а
 В кратце\
 TLinstall – это удобный инструмент для установки, открытия, переустановки и удаления TLauncher, лаунчера для игры Minecraft. С помощью этого установщика вы сможете легко настроить и использовать TLauncher на вашем компьютере.
