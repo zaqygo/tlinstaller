@@ -1,4 +1,4 @@
-<a name="TLinstall - скрипт для установки TLauncher-а">RU</a> <a name="TLinstall - the script for installing TLauncher">EN</a>
+[RU](https://github.com/zaqygo/tlinstaller/tree/main?tab=readme-ov-file#tlinstall---скрипт-для-установки-tlauncher-а)
 
 # TLinstall - скрипт для установки TLauncher-а
 В кратце\
