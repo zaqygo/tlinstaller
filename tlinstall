@@ -242,7 +242,7 @@ setup_git_c_ru="[TL] Установка GIT завершена"
 
 setup_unzip_en="[TL] Unzip installation"
 setup_unzip_ru="[TL] Установка Unzip"
-setup_unzip_c_en="[TL] Unzip installation ccomplete"
+setup_unzip_c_en="[TL] Unzip installation complete"
 setup_unzip_c_ru="[TL] Установка Unzip завершена"
 
 setup_global_en="[TL] Global folder installation"
