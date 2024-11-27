@@ -618,7 +618,7 @@ StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
 		clear
 	fi
 	cd ~/.tlauncher/
-	echo "desktopiconl=$main_shortcut" >> vars
+	echo "mainiconl=$main_shortcut" >> vars
 	echo "lang!language=ru desktopiconl!desktopiconl=$desktop_shortcut mainiconl!mainiconl=$main_shortcut installstatus!installstatus="true""
 	cd "$pwdir"
 	clear
@@ -804,7 +804,7 @@ StartupNotify=true" | sudo tee TLauncher.desktop > /dev/null
 		clear
 	fi
 	cd ~/.tlauncher/
-	echo "desktopiconl=$main_shortcut" >> vars
+	echo "mainiconl=$main_shortcut" >> vars
 	echo "lang!language=ru desktopiconl!desktopiconl=$desktop_shortcut mainiconl!mainiconl=$main_shortcut installstatus!installstatus="true""
 	cd "$pwdir"
 	clear
