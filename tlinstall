@@ -1258,7 +1258,7 @@ if [[ $num_of_sel_lang = 0 ]]; then
 	echo "$exitlol"
 fi
 	#endexit
-) | tee -a log$newfile$name.txt
+) | tee -a log$newfile$name.log
 	#logout
 
 exit
