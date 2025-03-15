@@ -16,16 +16,16 @@ TLinstall – это удобный инструмент для установк
 * Автоматизация процесса установки и обновления;
 * Полная деинсталляция лаунчера без остатков файлов.
 
-# Open
+### Open
 Открывает TLauncher из под консоли
 
-# Reinstall
+### Reinstall
 Деинсталироввание jar файла и ярлыков TLauncher-а и установка их заного
 
-# Uinstall
+### Uinstall
 Полное деинсталирование TLauncher-а и Minecraft-а
 
-# addonstl
+### addonstl
 Во время установки может понадобиться пароль от sudo. 
 Если вдруг TL установился неправильно, то просто запустите скрипт установки заного и выберите переустановку или деинсталяцию.
 
@@ -57,16 +57,16 @@ Advantages of using Thinstall:
 * Automating the installation and update process;
 * Complete uninstall of the launcher without leftover files.
 
-# Open
+### Open
 Opens TLauncher from under the console
 
-# Reinstall
+### Reinstall
 Uninstalling the jar file and TLauncher shortcuts and installing them again
 
-# Uninstall
+### Uninstall
 Full uninstall of TLauncher and Minecraft
 
-#  addonstl
+###  addonstl
 A sudo password may be required during installation. 
 If the TL input is installed incorrectly, then simply run the installation script again and select reinstall or uninstall.
 
